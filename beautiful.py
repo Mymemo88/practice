@@ -25,8 +25,9 @@ for element in cont1.find_all("h3"):
     tmplist2.append(url)
     print(element2.text)
     
-
+print("HP掲載中", len(tmplist), "件")
 tmplist3=list()
+#list for url of the project outline site
 
 for x in tmplist2:
     site=requests.get(x)
@@ -47,6 +48,8 @@ for x in tmplist2:
     
 
 tmplist4=list()
+#list for project ID
+
 pattern=".info/\d+/outline"
 for i, x in enumerate(tmplist3):
     try:
@@ -61,5 +64,20 @@ for i, x in enumerate(tmplist3):
 csvFile=open("main.csv","w",newline="",encoding="utf-8")
 writer=csv.writer(csvFile)
 for i, x in enumerate(tmplist):
-    writer.writerow([tmplist[i],tmplist2[i],tmplist3[i],tmplist4[i]])
+    writer.writerow([tmplist4[i],tmplist[i],tmplist2[i],tmplist3[i]])
+csvFile.close()
+
+
+f=open("main.csv","r",encoding="utf-8")
+read_data=csv.reader(f)
+l=[row for row in read_data]
+l.sort(key=lambda x: x[0])
+f.close()
+
                     
+csvFile=open("main.csv","w",newline="",encoding="utf-8")
+writer=csv.writer(csvFile)
+for x in l:
+    writer.writerow(x)
+csvFile.close()
+
