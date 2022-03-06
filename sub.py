@@ -133,6 +133,7 @@ def all_update():
     g_1=[row[1] for row in g_list]
     g_2=[row[2] for row in g_list]
     g_3=[row[3] for row in g_list]
+    g_4=[row[4] for row in g_list]
 
     for ii, jj in enumerate(g_3):
         if jj=="":
@@ -140,5 +141,8 @@ def all_update():
             print(g_1[ii]," has no detail.")
         else:
             print(g_1[ii])
-            mkcsv(jj)
+            if g_4[ii]=="掲載終了":
+                print(g_4[ii])
+            else:
+                mkcsv(jj)
             
